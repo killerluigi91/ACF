@@ -463,6 +463,9 @@ function ACF_ScaledExplosion( ent )
 	local Filter = {ent}
 	while Search do
 		for key,Found in pairs(ents.FindInSphere(Pos, Radius)) do
+			local CanDo = hook.Run("ACF_BulletDamage", _, Found, _, _, _, Inflictor, _, _ )
+			if ( CanDo == false ) then continue end
+			
 			if Found.IsExplosive and not Found.Exploding then	
 				local Hitat = Found:NearestPoint( Pos )
 				
