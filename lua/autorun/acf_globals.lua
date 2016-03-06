@@ -91,7 +91,7 @@ ACF.SpreadScale = 4		-- The maximum amount that damage can decrease a gun's accu
 ACF.GunInaccuracyScale = 1 -- A multiplier for gun accuracy.
 ACF.GunInaccuracyBias = 2  -- Higher numbers make shots more likely to be inaccurate.  Choose between 0.5 to 4. Default is 2 (unbiased).
 
-ACF.EnableDefaultDP = false -- Enable the inbuilt damage protection system.
+ACF.EnableDefaultDP = true -- Enable the inbuilt damage protection system.
 
 
 if file.Exists("acf/shared/acf_userconfig.lua", "LUA") then
@@ -152,7 +152,7 @@ elseif CLIENT then
 	killicon.Add( "acf_SA", "HUD/killicons/acf_SA", Color( 200, 200, 48, 255 ) )
 	killicon.Add( "acf_ammo", "HUD/killicons/acf_ammo", Color( 200, 200, 48, 255 ) )
 	
-	CreateConVar("acf_cl_particlemul", 1)
+	CreateConVar("acf_cl_particlemul", 0.1)
 	CreateClientConVar("ACF_MobilityRopeLinks", "1", true, true)
 	
 	-- Cache results so we don't need to do expensive filesystem checks every time
