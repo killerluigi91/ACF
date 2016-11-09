@@ -14,8 +14,13 @@
 	local Propellant = data:GetScale()
 	local ReloadTime = data:GetMagnitude()
 	
-	local Class = Gun:GetNWString( "Class" )
-	local ClassData = list.Get("ACFClasses").GunClass[Class]
+	local Class = Gun:GetNWString( "Class" ) 
+	local ACFClasses = list.Get("ACFClasses")
+	
+	-- somehow ACFClasses hasn't been set (client is missing ACF?)
+	if not (ACFClasses and ACFClasses[Class]) then return end
+	
+	local ClassData = ACFClasses.GunClass[Class]
 	
 	local Attachment = "muzzle"
 	local longbarrel = ClassData.longbarrel
