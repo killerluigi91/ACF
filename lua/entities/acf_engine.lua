@@ -701,7 +701,7 @@ function ENT:Link( Target )
 	end
 	
 	local Rope = nil
-	if IsValid( self.owner ) and self.Owner:GetInfoNum( "ACF_MobilityRopeLinks", 1) == 1 then
+	if IsValid( self.Owner ) and self.Owner:GetInfoNum( "ACF_MobilityRopeLinks", 1) == 1 then
 		Rope = constraint.CreateKeyframeRope( OutPos, 1, "cable/cable2", nil, self, self.Out, 0, Target, Target.In, 0 )
 	end
 	
