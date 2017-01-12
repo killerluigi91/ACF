@@ -466,6 +466,14 @@ else
 	net.Receive("acf_smokewind", recvSmokeWind)
 end
 
+if ( CLIENT ) then
+	ACF.CVarClientVolume = CreateClientConVar( "acf_volume", "1", true, false )
+	
+	function ACF.GetClientVolume( default )
+		return ACF.CVarClientVolume and math.Clamp( ACF.CVarClientVolume:GetFloat(), 0, 1 ) or default or 1
+	end
+end
+
 /*
 ONE HUGE HACK to get good killicons.
 */
