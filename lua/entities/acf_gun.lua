@@ -482,7 +482,8 @@ function ENT:Think()
 				else
 					self:Unlink( Crate )
 					soundstr =  "physics/metal/metal_box_impact_bullet" .. tostring(math.random(1, 3)) .. ".wav"
-					self:EmitSound(soundstr,500,100)
+					--self:EmitSound(soundstr,500,100)
+					ACF.NetworkEntitySound( self, soundstr, 500, 100 )
 				end
 			end
 		end

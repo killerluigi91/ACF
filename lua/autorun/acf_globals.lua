@@ -472,6 +472,34 @@ if ( CLIENT ) then
 	function ACF.GetClientVolume( default )
 		return ACF.CVarClientVolume and math.Clamp( ACF.CVarClientVolume:GetFloat(), 0, 1 ) or default or 1
 	end
+	
+	net.Receive( "acf_emitsound", function( bytes )
+		local ent   = net.ReadEntity()
+		local name  = net.ReadString()
+		local level = net.ReadUInt(9)
+		local pitch = net.ReadUInt(8)
+		
+		if ( IsValid( ent ) ) then
+			ent:EmitSound( name, level, pitch, ACF.GetClientVolume() )
+		end
+	end )
+else
+	util.AddNetworkString( "acf_emitsound" )
+	
+	local BITS_LEVEL = 9 -- 0 to 511
+	local BITS_PITCH = 8 -- 0 to 255
+	
+	local DEFAULT_LEVEL = 75
+	local DEFAULT_PITCH = 100
+	
+	function ACF.NetworkEntitySound( ent, name, level, pitch )
+		net.Start( "acf_emitsound" )
+			net.WriteEntity( ent )
+			net.WriteString( name )
+			net.WriteUInt( level or DEFAULT_LEVEL, BITS_LEVEL )
+			net.WriteUInt( pitch or DEFAULT_PITCH, BITS_PITCH )
+		net.Broadcast()
+	end
 end
 
 /*
