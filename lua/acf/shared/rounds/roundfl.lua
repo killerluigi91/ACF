@@ -63,7 +63,7 @@ function Round.convert( Crate, PlayerData )
 	local ServerData = {}
 	local GUIData = {}
 
-	GUIData["LengthAdj"] = 0.5
+	Data["LengthAdj"] = 0.5
 	if not PlayerData["PropLength"] then PlayerData["PropLength"] = 0 end
 	if not PlayerData["ProjLength"] then PlayerData["ProjLength"] = 0 end
 	if not PlayerData["Data5"] then PlayerData["Data5"] = 3 end --flechette count
@@ -142,6 +142,7 @@ function Round.network( Crate, BulletData )
 	Crate:SetNWFloat("Caliber",math.Round( BulletData["FlechetteRadius"]*0.2 ,2))
 	Crate:SetNWFloat("ProjMass",BulletData["FlechetteMass"])
 	Crate:SetNWFloat("DragCoef",BulletData["FlechetteDragCoef"])
+	Crate:SetNWFloat( "FillerMass", 0 )
 	--Crate:SetNWFloat("Caliber",BulletData["Caliber"])
 	--Crate:SetNWFloat("ProjMass",BulletData["ProjMass"])
 	--Crate:SetNWFloat("DragCoef",BulletData["DragCoef"])
