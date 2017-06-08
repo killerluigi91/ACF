@@ -85,7 +85,7 @@ function ACF_Check ( Entity )
 	if ( IsValid(Entity) ) then
 		if ( Entity:GetPhysicsObject():IsValid() and !Entity:IsWorld() and !Entity:IsWeapon() ) then
 			local Class = Entity:GetClass()
-			if ( Class != "gmod_ghost" and Class != "debris" and Class != "prop_ragdoll" and not string.find( Class , "func_" )  ) then
+			if ( Class != "gmod_ghost" and Class != "debris" and Class != "prop_ragdoll" and Class != "prop_vehicle_crane" and not string.find( Class , "func_" )  ) then
 				if !Entity.ACF then 
 					ACF_Activate( Entity )
 				elseif Entity.ACF.Mass != Entity:GetPhysicsObject():GetMass() then
@@ -346,7 +346,7 @@ end
 -- for those extra sneaky bastards
 function ACF_GetAllChildren( ent, ResultTable )
 	
-	if not ent.GetChildren then return end
+	--if not ent.GetChildren then return end  --shouldn't need to check anymore, built into glua now
 	
 	local ResultTable = ResultTable or {}
 	
